@@ -12,6 +12,14 @@ import (
 
 // https://github.com/joho/godotenv/blob/master/godotenv.go
 
+func TryLoad(envFile string) {
+	if _, err := os.Stat(envFile); err == nil || os.IsExist(err) {
+		if err := Load(envFile); err != nil {
+			log.Println("load env >", err)
+		}
+	}
+}
+
 func Load(filename string) error {
 	envMap, err := readFile(filename)
 

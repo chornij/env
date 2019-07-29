@@ -99,7 +99,7 @@ func parseLine(line string) (key string, value string, err error) {
 		return
 	}
 
-	info := strings.Split(line, "=")
+	info := strings.SplitN(line, "=", 1)
 
 	if len(info) != 2 {
 		err = errors.New("can't separate key from value")

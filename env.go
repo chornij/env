@@ -20,6 +20,16 @@ func TryLoad(envFile string) {
 	}
 }
 
+func Get(name, defaultValue string) string {
+	value := os.Getenv(name)
+
+	if value == "" {
+		return defaultValue
+	}
+
+	return value
+}
+
 func Load(filename string) error {
 	envMap, err := readFile(filename)
 

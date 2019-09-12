@@ -7,6 +7,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -28,6 +29,30 @@ func Get(name, defaultValue string) string {
 	}
 
 	return value
+}
+
+func GetInt(name string, defaultValue int) (result int) {
+	value := os.Getenv(name)
+
+	if value != "" {
+		result, _ = strconv.Atoi(value)
+	} else {
+		result = defaultValue
+	}
+
+	return
+}
+
+func GetInt64(name string, defaultValue int64) (result int64) {
+	value := os.Getenv(name)
+
+	if value != "" {
+		result, _ = strconv.ParseInt(name, 10, 64)
+	} else {
+		result = defaultValue
+	}
+
+	return
 }
 
 func Load(filename string) error {
